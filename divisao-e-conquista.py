@@ -1,4 +1,5 @@
 import statistics
+import numpy as np
 
 
 ## Questão 1
@@ -21,23 +22,7 @@ def mean(size, a, b):
     return (aux[size] + aux[size - 1]) / 2
 
 
-def mean1(size, a, b):
-    def mean_aux(ini_a, end_a, ini_b, end_b, a, b):
-        ma = (ini_a + end_a) // 2
-        mb = (ini_b + end_b) // 2
-
-        if (end_a - ini_a <= 1 and end_b - ini_b <= 1) or (a[ma] == b[mb]):
-            # Problema: acessar o estado anterior das variaveis ma e mb
-            return (a[ma] + b[mb]) / 2
-        elif a[ma] <= b[mb]:
-            return mean_aux(ma, end_a, ini_b, mb, a, b)
-        else:
-            return mean_aux(ini_a, ma, mb, end_b, a, b)
-
-    return mean_aux(0, size, 0, size, a, b)
-
-
-def median(n, a1, a2):
+def median_matheus(n, a1, a2):
     m1, m2 = 0, 0
     start1, start2 = 0, 0
     end1, end2 = n, n
@@ -61,7 +46,29 @@ def median(n, a1, a2):
     return (a1[m1] + a2[m2]) / 2
 
 
+def median_imp(size, a, b):
+    def mean_aux(ini_a, end_a, ini_b, end_b, a, b):
+        ma = (ini_a + end_a) // 2
+        mb = (ini_b + end_b) // 2
+
+        if a[ma] == b[mb]:
+            return (a[ma] + b[mb]) / 2
+        elif end_a - ini_a <= 1 and end_b - ini_b <= 1:
+            if a[ma] > b[mb]:
+                return (a[end_a] + b[ini_b]) / 2
+            else:
+                return (a[ini_a] + b[end_b]) / 2
+        elif a[ma] <= b[mb]:
+            return mean_aux(ma, end_a, ini_b, mb, a, b)
+        else:
+            return mean_aux(ini_a, ma, mb, end_b, a, b)
+
+    return mean_aux(0, size, 0, size, a, b)
+
+
 if __name__ == '__main__':
-    print(median(5, [2, 3, 3, 7, 9], [1, 2, 6, 10, 11]))
-    print(mean1(5, [2, 3, 3, 7, 9], [1, 2, 6, 10, 11]))
-    print(statistics.median([2, 3, 3, 7, 9] + [1, 2, 6, 10, 11]))
+    SIZE = 10
+    for i in range(10):
+        a = np.sort(np.random.randint(20, size=SIZE))
+        b = np.sort(np.random.randint(20, size=SIZE))
+        print(median_imp(SIZE, a, b), median_matheus(SIZE, a, b), statistics.median(a + b))
