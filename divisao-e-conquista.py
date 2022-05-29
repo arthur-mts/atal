@@ -25,9 +25,13 @@ def meanlogn(size, a, b, centerA=None, centerB=None):
     elif a[centerA] == b[centerB]:
         return a[centerA]
     # Analisa a parte maior de A e a menor de B
+    elif centerA <= 1 or centerA == size - 1 or centerB <= 1 or centerB == size - 1:
+        return (a[centerA] + b[centerB]) // 2
     elif a[centerA] < b[centerB]:
         return meanlogn(size, a, b, (size + centerA) // 2, centerB // 2)
+    else:
+        return meanlogn(size, a, b, centerA // 2, (size + centerB) // 2)
 
 
 if __name__ == '__main__':
-    print(mean(5, [2, 3, 6, 7, 9], [1, 2, 6, 10, 11]))
+    print(meanlogn(5, [2, 3, 3, 7, 9], [1, 2, 6, 10, 11]))
