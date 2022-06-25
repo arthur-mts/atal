@@ -50,4 +50,3 @@ if __name__ == '__main__':
         target = statistics.median(a + b)
         assert imp == target, f"Resultado {imp}; Resultado esperado {target}"
         print(imp, target)
-

@@ -1,3 +1,5 @@
+## Questão 2
+## TODO: Calcular complexidade
 def less_missing(n, a):
     def less_missing_aux(a, start, end):
         idx = (end + start) // 2
