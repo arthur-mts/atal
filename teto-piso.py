@@ -1,26 +1,35 @@
 def teto_piso(n, a, k):
-    def piso(a, k, start, end):
-        idx = (end + start) // 2
-        if idx == 0:
-            return a[idx] if a[idx] <= k else -1
-        elif a[idx] >= k:
-
-
-
+    # encontrar o teto e partir dele o piso
     def teto_piso_aux(a, k, start, end):
         idx = (end + start) // 2
 
-        if idx == 0:
-            print(f"teto = {a[idx]}, piso = {a[idx]}")
-            teto = a[idx] if a[idx] >= k else -1
-            piso = a[idx] if a[idx] <= k else -1
-            return a[idx], a[idx]
+        ## Se idx for 0, ele é o piso
+        if end - start <=1:
+            if a[idx] > k:
+                piso = -1
+            else:
+                piso = a[idx]
+
+            if piso == k:
+                teto = k
+            elif end == n:
+                teto = -1
+            elif piso == -1:
+                teto = a[idx]
+            else:
+                teto = a[idx + 1]
+
+            return teto, piso
 
         if a[idx] > k:
-            if a[idx]
-            else:
-            # Se o numero na posição i é maior que nosso K, temos certeza que o
             return teto_piso_aux(a, k, start, idx)
-
+        else:
+            return teto_piso_aux(a, k, idx, end)
+    return teto_piso_aux(a, k, 0, n)
 
 if __name__ == '__main__':
+    a = [1,4,6,8,9]
+    #teto, piso = teto_piso(5, a, 9)
+    for i in range(11):
+        teto, piso = teto_piso(5, a, i)
+        print(f"k = {i} __>teto={teto}, piso={piso}")
