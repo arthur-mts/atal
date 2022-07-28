@@ -11,7 +11,7 @@ def calcular_paradas(distancia, km_tanque, paradas: list):
             if i == len(paradas):
                 m = distancia - paradas[i - 1]
             else:
-                m = paradas[i] - paradas[i - 1] if i < len(paradas) - 1 else distancia - paradas[i]
+                m = paradas[i] - paradas[i - 1]
 
         if m > km_possiveis:
             paradas_escolhidas.append(paradas[i - 1])
