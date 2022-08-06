@@ -7,24 +7,32 @@ def cut_rod_memoizado(p, n):
     r[0] = 0
     for i in range(1, n + 1):
         r[i] = -inf
-    out = cut_rod_memoizado_aux(p, n, r)
+    exp = {}
+    out = cut_rod_memoizado_aux(p, n, r,exp)
+    # for i in exp.keys():
+    #     print(exp.get(i))
     print(r)
     return out
 
 
-def cut_rod_memoizado_aux(p, n, r):
-    if r[n] >= 0:
-        return r[n]
+def cut_rod_memoizado_aux(p, n, memory, explain):
+    if memory[n] >= 0:
+        return memory[n]
     else:
         q = 0
+        # 1 -- 10
         for i in range(1, n + 1):
-            q = max(q, p[i] + cut_rod_memoizado_aux(p, n - i, r))
-        r[n] = q
+            previous_result = cut_rod_memoizado_aux(p, n - i, memory, explain)
+            q = max(q, p[i] + previous_result)
+            print(f"({i}+{n - i}) previous result={previous_result};n={n};q={q}")
+            explain[(i, n-i)] = f"({i}+{n - i}) previous result={previous_result};n={n};q={q}"
+        print("\n")
+        memory[n] = q
         return q
 
 
 if __name__ == '__main__':
-    tam = 4
+    tam = 8
 
     p = {
         1: 1,
@@ -38,7 +46,5 @@ if __name__ == '__main__':
         9: 24,
         10: 30
     }
-    # for i in range(1, tam + 1):
-    #    p[i] = randint(5, 10)
 
     print(cut_rod_memoizado(p, tam))
