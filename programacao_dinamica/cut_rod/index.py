@@ -8,7 +8,7 @@ from cut_rod import cut_rod
 
 from cut_rod_pd import cut_rod_pd
 
-if __name__ == '__main__':
+def main():
     j = 20
     p = dict()
     for i in range(1, j + 1):
@@ -30,3 +30,6 @@ if __name__ == '__main__':
     print(f"Corte de hastes dinamico: {cut_rod_pd(p, n)}")
     end = time.time()
     print("Tempo de execução: " + "%.8f" % (end - start) + "\n")
+
+if __name__ == '__main__':
+    main()

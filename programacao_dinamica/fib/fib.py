@@ -1,4 +1,3 @@
-from sys import argv
 from timeit import default_timer as timer
 
 

@@ -6,10 +6,10 @@ from mochila_memorizado import mochila_memorizado
 
 from mochila_recursivo import mochila_recursivo
 
-if __name__ == '__main__':
+def main():
     s = dict()
 
-    w = 20
+    w = 30
 
     n = 30
 
@@ -33,3 +33,7 @@ if __name__ == '__main__':
     print(f'Função dinâmica: {mochila_dinamico(s, n, w)}')
     end = time.time()
     print("Tempo de execução: " + "%.8f" % (end - start) + "\n")
+
+
+if __name__ == '__main__':
+    main()

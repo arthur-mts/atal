@@ -1,4 +1,4 @@
-import utils
+from programacao_dinamica import utils
 
 
 def mochila_memorizado(s, n, w):
@@ -14,7 +14,7 @@ def mochila_memorizado(s, n, w):
         else:
             decreased_weight = w - s[n]['w']
             memory[n][w] = max(
-                s[n]['v'] + mochila_memorizado(s, n - 1, decreased_weight),
+                s[n]['v'] + mochila_memorizado_aux(s, n - 1, decreased_weight),
                 mochila_memorizado_aux(s, n - 1, w)
             )
         return memory[n][w]

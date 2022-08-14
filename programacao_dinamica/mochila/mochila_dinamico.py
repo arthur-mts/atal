@@ -1,4 +1,4 @@
-import utils
+from programacao_dinamica import utils
 
 
 def mochila_dinamico(s, n, w):
@@ -19,23 +19,13 @@ def mochila_dinamico(s, n, w):
 
 if __name__ == '__main__':
     s = {
-        1: {
-            "w": 6,
-            "v": 30
-        }, 2: {
-            "w": 3,
-            "v": 14
-        }, 3: {
-            "w": 4,
-            "v": 16
-        },
-        4: {
-            "w": 2,
-            "v": 9
-        }
+        1: {"w": 6, "v": 20},
+        2: {"w": 2, "v": 15},
+        3: {"w": 1, "v": 2},
+        4: {"w": 4, "v": 12},
+        5: {"w": 3, "v": 7}
     }
-
-    w = 10
+    w = 5
 
     n = len(s.keys())
 
