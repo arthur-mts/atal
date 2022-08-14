@@ -10,8 +10,8 @@ def random_string(l):
     return ''.join(random.choice('ACGT') for _ in range(l))
 
 def main():
-    l1 = 200
-    l2 = 155
+    l1 = 20
+    l2 = 15
     s1 = random_string(l1)
     s2 = random_string(l2)
 
